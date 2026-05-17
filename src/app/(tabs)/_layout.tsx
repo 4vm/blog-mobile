@@ -1,7 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function TabLayout() {
+  const { user } = useAuth();
+
   return (
     <Tabs
       screenOptions={{
@@ -9,6 +12,7 @@ export default function TabLayout() {
         headerTitleAlign: "center",
       }}
     >
+      {/* Aba Pública (Alunos e Professores) */}
       <Tabs.Screen
         name="index"
         options={{
@@ -18,7 +22,18 @@ export default function TabLayout() {
           ),
         }}
       />
-      {/* adicionar a aba do Painel Admin */}
+
+      {/* Aba Administrativa */}
+      <Tabs.Screen
+        name="admin"
+        options={{
+          title: "Painel Admin",
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="settings" size={24} color={color} />
+          ),
+          href: user?.role === "TEACHER" ? "/admin" : null,
+        }}
+      />
     </Tabs>
   );
 }

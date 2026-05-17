@@ -2,14 +2,14 @@ import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
-    ActivityIndicator,
-    Alert,
-    FlatList,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  Alert,
+  FlatList,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { useAuth } from "../../contexts/AuthContext";
 import { PostData, postService } from "../../services/postService";
@@ -20,6 +20,11 @@ export default function HomeScreen() {
   const [posts, setPosts] = useState<PostData[]>([]);
   const [loadingPosts, setLoadingPosts] = useState(true);
   const [keyword, setKeyword] = useState("");
+
+  async function handleLogout() {
+    await signOut();
+    router.replace("/login");
+  }
 
   async function loadPosts() {
     try {
@@ -75,18 +80,16 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Cabeçalho */}
       <View style={styles.header}>
         <View>
           <Text style={styles.greeting}>Olá, {user?.name}</Text>
           <Text style={styles.role}>{user?.role}</Text>
         </View>
-        <TouchableOpacity onPress={signOut} style={styles.logoutButton}>
+        <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
           <Ionicons name="log-out-outline" size={24} color="#E53E3E" />
         </TouchableOpacity>
       </View>
 
-      {/* Barra de Busca */}
       <View style={styles.searchContainer}>
         <TextInput
           style={styles.searchInput}
@@ -101,7 +104,6 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* Listagem de Posts */}
       {loadingPosts ? (
         <View style={styles.center}>
           <ActivityIndicator size="large" color="#3182CE" />
@@ -182,8 +184,8 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 12,
     marginBottom: 16,
-    elevation: 2, // Sombra no Android
-    shadowColor: "#000", // Sombra no iOS
+    elevation: 2,
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,

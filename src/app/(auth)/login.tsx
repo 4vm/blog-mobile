@@ -1,15 +1,15 @@
 import { router } from "expo-router";
 import React, { useState } from "react";
 import {
-    ActivityIndicator,
-    Alert,
-    KeyboardAvoidingView,
-    Platform,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -28,9 +28,7 @@ export default function LoginScreen() {
 
     try {
       setIsSubmitting(true);
-
       await signIn(email, password);
-
       router.replace("/");
     } catch (error: any) {
       Alert.alert("Falha no Login", error.message);
@@ -82,6 +80,15 @@ export default function LoginScreen() {
           ) : (
             <Text style={styles.buttonText}>Entrar</Text>
           )}
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.registerButton}
+          onPress={() => router.push("/register" as any)}
+        >
+          <Text style={styles.registerButtonText}>
+            Não tem uma conta? Cadastre-se
+          </Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -142,5 +149,14 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 16,
     fontWeight: "bold",
+  },
+  registerButton: {
+    marginTop: 24,
+    alignItems: "center",
+  },
+  registerButtonText: {
+    color: "#3182CE",
+    fontSize: 14,
+    fontWeight: "600",
   },
 });

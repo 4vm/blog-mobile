@@ -2,13 +2,13 @@ import { Ionicons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
-    ActivityIndicator,
-    Alert,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  Alert,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { PostData, postService } from "../../services/postService";
 
@@ -54,7 +54,6 @@ export default function PostDetailScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Cabeçalho com botão de voltar */}
       <View style={styles.header}>
         <TouchableOpacity
           onPress={() => router.back()}
@@ -64,7 +63,6 @@ export default function PostDetailScreen() {
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Leitura</Text>
         <View style={{ width: 24 }} />{" "}
-        {/* Espaçador para centralizar o título */}
       </View>
 
       <ScrollView contentContainerStyle={styles.content}>
