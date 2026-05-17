@@ -26,7 +26,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Recuperar sessão ao abrir o aplicativo
   useEffect(() => {
     async function loadStorageData() {
       try {
@@ -54,7 +53,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
       const { token, user: userData } = response.data;
 
-      //manter o usuário logado
       await SecureStore.setItemAsync("auth_token", token);
       await SecureStore.setItemAsync("auth_user", JSON.stringify(userData));
 

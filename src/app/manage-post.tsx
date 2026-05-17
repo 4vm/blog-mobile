@@ -68,7 +68,7 @@ export default function ManagePostScreen() {
       const postData = {
         title,
         content,
-        published, // Enviado silenciosamente
+        published,
         authorId: user?.id || "",
         authorName: authorName.trim(),
       };

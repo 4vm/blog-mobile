@@ -62,7 +62,7 @@ export default function PostDetailScreen() {
           <Ionicons name="arrow-back" size={24} color="#1A202C" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Leitura</Text>
-        <View style={{ width: 24 }} />{" "}
+        <View style={{ width: 24 }} />
       </View>
 
       <ScrollView contentContainerStyle={styles.content}>
